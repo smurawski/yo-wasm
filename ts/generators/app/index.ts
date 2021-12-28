@@ -15,6 +15,7 @@ import { failed } from './utils/errorable';
 import { swift } from './languages/swift';
 import { FMT_CHALK, FMT_MARKDOWN } from './formatter';
 import { ask, Moarable } from './question-sequence';
+import { tinygo } from './languages/tinygo';
 
 const REGISTRY_CHOICE_ACR = "Azure Container Registry";
 const REGISTRY_CHOICE_HIPPO = "Hippo";
@@ -68,7 +69,8 @@ module.exports = class extends Generator {
           'AssemblyScript',
           'C',
           'Rust',
-          'Swift'
+          'Swift',
+          'TinyGo'
         ],
         default: 'Rust'
       },
@@ -226,6 +228,8 @@ function languageProvider(language: string): Language {
       return clang;
     case 'Swift':
       return swift;
+    case 'TinyGo':
+      return tinygo;
     default:
       throw new Error("You didn't choose a language");
   }

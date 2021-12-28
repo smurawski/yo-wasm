@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-go@v2
+
+    - name: Install TinyGo
+      run: |
+        wget https://github.com/tinygo-org/tinygo/releases/download/v0.21.0/tinygo_0.21.0_amd64.deb
+        sudo dpkg -i tinygo_0.21.0_amd64.deb
+        echo "/usr/local/tinygo/bin" >> $GITHUB_PATH
+
+    - name: Build
+      run: make build

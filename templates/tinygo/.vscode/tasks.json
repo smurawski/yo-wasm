@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Make: Build TinyGo WASM",
+        "type": "shell",
+        "command": "make",
+        "args": [
+          "build"
+        ],
+        "problemMatcher": [
+          "$go"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Make: Run TinyGo WASM",
+        "type": "shell",
+        "command": "make",
+        "args": [
+          "run"
+        ],
+        "problemMatcher": [
+          "$go"
+        ]
+      },
+      {
+        "label": "#OPT:Hippo# Hippo: Publish Development Build",
+        "type": "shell",
+        "command": "hippo",
+        "args": [
+          "push",
+          "."
+        ]
+      }
+    ]
+}
